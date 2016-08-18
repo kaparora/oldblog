@@ -1,0 +1,29 @@
+# Dependencies
+markdown:         redcarpet
+highlighter:      pygments
+
+# Permalinks
+permalink:        pretty
+#relative_permalinks: true
+
+# Setup
+title:            Kapil Arora
+tagline:          'Cloud Platform Architect'
+description:      'Platform Architect: Cloud and DevOps '
+url:              
+baseurl:          /
+
+author:
+  name:           'Kapil Arora'
+  url:            kapilarora.de
+
+paginate:         5
+
+# Custom vars
+version:          2.1.0
+
+github: kapilarora          
+linkedin: kaparora
+twitter: kaparora
+# Gems
+gems: [jekyll-paginate]
