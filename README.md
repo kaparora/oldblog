@@ -1,1 +1,1 @@
-this is built on a copy of Jekyll-Mono by [Akshay Agarwal](https://github.com/AkshayAgarwal007)
+this blog  is built on a copy of [Hyde](https://github.com/poole/hyde) 
