@@ -3,8 +3,10 @@ layout: post
 title: Efficiently protect OpenStack Cinder backup to public/private clouds using AltaVault
 author: Kapil Arora
 ---
+
 It's been observed that more and more organizations are turning to cloud for backup and archival needs. Actually that is many times one of the first workloads that brings cloud into the picture. Cloud Storage is ideal for backup because storage in the cloud is cheap e.g. Glacier pricing for AWS EU (Frankfurt) region is $0.012 per GB / month and EU (Ireland) region is even cheaper at $0.007 per GB / month (Feb 2016).
  
+
  
 ### Cloud Storage backup use cases 
  
@@ -16,6 +18,7 @@ Moreover, in backup and restore use cases: cloud storage is a perfect destinatio
  
 * **#3** A combination of the #1 and #2
 Both of the above use cases can also be combined together to have a complete backup, restore and archive lifecycle where data older than x days/months/years becomes cold data.
+
  
 ### Cinder
 Cinder is the OpenStack block storage program and it provides a standard API to manage Block Storage in OpenStack environments. 
