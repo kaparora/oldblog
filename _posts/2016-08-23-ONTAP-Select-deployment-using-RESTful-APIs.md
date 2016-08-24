@@ -16,7 +16,7 @@ The Deploy administration utility is packaged and installed as a separate Linux 
 
 Once you have deployed the "ONTAP select deploy administration utility" VM you can use it to add, configure and manage  Hosts and also create and destroy ONTAP clusters. All these operations can easily be performed using the RESTful APIs.
 <p></p>
-The Swagger UI can be accessed e.g. @ https://10.64.58.9/api/v1/ui where 10.64.58.9 is the IP of my Deploy VM. Let's look at how you can create a 1 node cluster in a VMware environment using the RESTful APIs.
+The Swagger UI can be accessed e.g. @ https://192.168.58.9/api/v1/ui where 192.168.58.9 is the IP of my Deploy VM. Let's look at how you can create a 1 node cluster in a VMware environment using the RESTful APIs.
 ### Steps to create a 1 node cluster:
 1. Add host
 2. Configure Host
@@ -29,11 +29,11 @@ curl -X PUT --header 'Content-Type: application/json' --header 'Accept: applicat
   "password": "Secret01;",
   "username": "restful@muccbc",
   "vcenter": "vc-demo01.muccbc.hq.netapp.com"
-}' 'https://10.64.58.9/api/v1/hosts/esx-01.muccbc.hq.netapp.com' --user admin:Secret01 --insecure
+}' 'https://192.168.58.9/api/v1/hosts/esx-01.muccbc.hq.netapp.com' --user admin:Secret01 --insecure
 {% endhighlight %}
 Once the host is added, it will be authenticated. To check if the host was properly added and authenticated run the following curl command and check status of your host.
 {% highlight sh %}
-curl -X GET --header 'Accept: application/json' 'https://10.64.58.9/api/v1/hosts' --user admin:Secret01 --insecure
+curl -X GET --header 'Accept: application/json' 'https://192.168.58.9/api/v1/hosts' --user admin:Secret01 --insecure
 {% endhighlight %}
 Expected Output:
 {% highlight sh %}
@@ -61,12 +61,12 @@ curl -X PUT --header 'Content-Type: application/json' --header 'Accept: applicat
     "name": "VM_MGMT"
   },
   "storage_pool": "LocalDS"
-}' 'https://10.64.58.9/api/v1/hosts/esx-01.muccbc.hq.netapp.com/configuration' --user admin:Secret01 --insecure
+}' 'https://192.168.58.9/api/v1/hosts/esx-01.muccbc.hq.netapp.com/configuration' --user admin:Secret01 --insecure
 {% endhighlight %}
 
 Run the following Curl command to check the status of your configuration request. 
 {% highlight sh %}
-curl -X GET --header 'Accept: application/json' 'https://10.64.58.9/api/v1/hosts' --user admin:Secret01 --insecure
+curl -X GET --header 'Accept: application/json' 'https://192.168.58.9/api/v1/hosts' --user admin:Secret01 --insecure
 {% endhighlight %}
 You should wait until the configuration is finished and following output is seen.
 {% highlight sh %}
@@ -84,17 +84,17 @@ Once the ESX host is added, authenticated and configured, we can go ahead and se
 {% highlight sh %}
 curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{
   "admin_password": "Secret01",
-  "cluster_mgmt_ip": "10.65.59.175",
+  "cluster_mgmt_ip": "192.168.59.175",
   "dns_info": {
     "dns_ips": [
-      "10.65.56.5"
+      "192.168.56.5"
     ],
     "domains": [
       "muccbc.hq.netapp.com"
     ]
   },
   "eval": true,
-  "gateway": "10.65.59.1",
+  "gateway": "192.168.59.1",
   "inhibit_rollback": true,
   "name": "select",
   "netmask": "255.255.255.0",
@@ -102,24 +102,24 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: applica
     {
       "host": "esx-01.muccbc.hq.netapp.com",
       "name": "select-01",
-      "node_mgmt_ip": "10.65.59.176"
+      "node_mgmt_ip": "192.168.59.176"
     }
   ],
   "ntp_servers": [
-    "10.65.56.5"
+    "192.168.56.5"
   ]
-}' 'https://10.64.58.9/api/v1/clusters' --user admin:Secret01 --insecure
+}' 'https://192.168.58.9/api/v1/clusters' --user admin:Secret01 --insecure
 {% endhighlight %}
 
 Once the request is successfully sent, you can use the below CURL command to monitor the progress :
 {% highlight sh %}
-curl -X GET --header 'Accept: application/json' 'https://10.64.58.9/api/v1/clusters' --user admin:Secret01 --insecure
+curl -X GET --header 'Accept: application/json' 'https://192.168.58.9/api/v1/clusters' --user admin:Secret01 --insecure
 {% endhighlight %}
 Once the Cluster creation is completed you should see the state of the Cluster as 'online'.
 {% highlight sh %}
 [
   {
-    "cluster_mgmt_ip": "10.65.59.175",
+    "cluster_mgmt_ip": "192.168.59.175",
     "name": "select",
     "num_nodes": 1,
     "state": "online"
